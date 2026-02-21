@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package task;
+
+service ApiService {
+  rpc SubmitTask(SubmitTaskRequest) returns (SubmitTaskResponse);
+  rpc GetResult(GetResultRequest) returns (GetResultResponse);
+  rpc Ping(PingRequest) returns (PingResponse);
+}
+
+service SchedulerService {
+  rpc SubmitTask(SubmitTaskRequest) returns (SubmitTaskResponse);
+  rpc Ping(PingRequest) returns (PingResponse);
+}
+
+service WorkerService {
+  rpc ProcessTask(ProcessTaskRequest) returns (ProcessTaskResponse);
+  rpc Ping(PingRequest) returns (PingResponse);
+}
+
+service StoreService {
+  rpc PutResult(PutResultRequest) returns (PutResultResponse);
+  rpc GetResult(GetResultRequest) returns (GetResultResponse);
+  rpc Ping(PingRequest) returns (PingResponse);
+}
+
+message PingRequest {}
+message PingResponse { string message = 1; }
+
+message SubmitTaskRequest {
+  string task_type = 1; // "sha256" | "reverse" | "fib"
+  string payload = 2;   // input string or number as string
+}
+
+message SubmitTaskResponse {
+  string task_id = 1;
+}
+
+message ProcessTaskRequest {
+  string task_id = 1;
+  string task_type = 2;
+  string payload = 3;
+}
+
+message ProcessTaskResponse {
+  string task_id = 1;
+  string status = 2; // "DONE" | "ERROR"
+  string result = 3;
+  string error = 4;
+  int64 worker_ms = 5;
+}
+
+message PutResultRequest {
+  string task_id = 1;
+  string status = 2;
+  string result = 3;
+  string error = 4;
+}
+
+message PutResultResponse { bool ok = 1; }
+
+message GetResultRequest { string task_id = 1; }
+
+message GetResultResponse {
+  string task_id = 1;
+  string status = 2; // "PENDING" | "DONE" | "ERROR" | "NOT_FOUND"
+  string result = 3;
+  string error = 4;
+}
+
