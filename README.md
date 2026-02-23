@@ -1,4 +1,19 @@
+Overview
 
-Build command:
+This project implements a distributed task processing system using Python, gRPC, and Docker.
 
-docker compose -f docker-compose.micro.yml up --build
+Two architectures are provided:
+
+Microservices architecture
+
+Monolith-per-node architecture
+
+Requirements
+
+Docker Desktop
+
+Python 3.9
+
+pip
+
+matplotlib (for plotting)
