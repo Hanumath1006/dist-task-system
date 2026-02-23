@@ -1,0 +1,60 @@
+services:
+  node1:
+    build:
+      context: .
+      dockerfile: services/monolith/Dockerfile
+    environment:
+      - PORT=50050
+      - PYTHONPATH=/app:/app/generated
+    ports:
+      - "50060:50050"
+
+  node2:
+    build:
+      context: .
+      dockerfile: services/monolith/Dockerfile
+    environment:
+      - PORT=50050
+      - PYTHONPATH=/app:/app/generated
+    ports:
+      - "50061:50050"
+
+  node3:
+    build:
+      context: .
+      dockerfile: services/monolith/Dockerfile
+    environment:
+      - PORT=50050
+      - PYTHONPATH=/app:/app/generated
+    ports:
+      - "50062:50050"
+
+  node4:
+    build:
+      context: .
+      dockerfile: services/monolith/Dockerfile
+    environment:
+      - PORT=50050
+      - PYTHONPATH=/app:/app/generated
+    ports:
+      - "50063:50050"
+
+  node5:
+    build:
+      context: .
+      dockerfile: services/monolith/Dockerfile
+    environment:
+      - PORT=50050
+      - PYTHONPATH=/app:/app/generated
+    ports:
+      - "50064:50050"
+
+  node6:
+    build:
+      context: .
+      dockerfile: services/monolith/Dockerfile
+    environment:
+      - PORT=50050
+      - PYTHONPATH=/app:/app/generated
+    ports:
+      - "50065:50050"
