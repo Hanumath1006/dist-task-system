@@ -5,8 +5,9 @@ import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import grpc
-import generated.task_pb2
-import generated.task_pb2_grpc
+
+import generated.task_pb2 as task_pb2
+import generated.task_pb2_grpc as task_pb2
 
 TASKS = [
     ("sha256", "hello-world"),
