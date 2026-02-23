@@ -5,7 +5,8 @@ import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import grpc
-from generated import task_pb2, task_pb2_grpc
+import generated.task_pb2
+import generated.task_pb2_grpc
 
 TASKS = [
     ("sha256", "hello-world"),
@@ -89,3 +90,4 @@ if __name__ == "__main__":
     args = ap.parse_args()
     run(args.addr, args.total, args.concurrency, args.out)
 
+    
