@@ -1,3 +1,5 @@
+import os, sys
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 import argparse
 import csv
 import random
@@ -6,8 +8,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import grpc
 
-import generated.task_pb2 as task_pb2
-import generated.task_pb2_grpc as task_pb2
+from generated import task_pb2, task_pb2_grpc
 
 TASKS = [
     ("sha256", "hello-world"),
