@@ -1,10 +1,10 @@
 import os, sys
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 import argparse
 import csv
 import random
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 import grpc
 
