@@ -1,0 +1,56 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: services/api/Dockerfile
+    environment:
+      - PORT=50050
+      - SCHEDULER_ADDR=scheduler:50051
+      - STORE_ADDR=store:50053
+    ports:
+      - "50050:50050"
+    depends_on:
+      - scheduler
+      - store
+
+  scheduler:
+    build:
+      context: .
+      dockerfile: services/scheduler/Dockerfile
+    environment:
+      - PORT=50051
+      - STORE_ADDR=store:50053
+      - WORKERS=worker1:50052,worker2:50052,worker3:50052
+    depends_on:
+      - store
+      - worker1
+      - worker2
+      - worker3
+
+  store:
+    build:
+      context: .
+      dockerfile: services/store/Dockerfile
+    environment:
+      - PORT=50053
+
+  worker1:
+    build:
+      context: .
+      dockerfile: services/worker/Dockerfile
+    environment:
+      - PORT=50052
+
+  worker2:
+    build:
+      context: .
+      dockerfile: services/worker/Dockerfile
+    environment:
+      - PORT=50052
+
+  worker3:
+    build:
+      context: .
+      dockerfile: services/worker/Dockerfile
+    environment:
+      - PORT=50052
